@@ -1,0 +1,55 @@
+.tiktokdm-idm-btn {
+  position: absolute;
+  z-index: 2147483647;
+  top: 15px;
+  right: 15px;
+  background: rgba(13, 13, 18, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(37, 244, 238, 0.4);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  user-select: none;
+}
+
+.tiktokdm-idm-btn svg { color: #25f4ee; }
+
+/* Show on hover of major containers */
+[data-e2e="user-post-item"]:hover .tiktokdm-idm-btn,
+[class*="DivVideoWrapper"]:hover .tiktokdm-idm-btn,
+[class*="VideoContainer"]:hover .tiktokdm-idm-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.tiktokdm-idm-btn:hover {
+  background: #fe2c55;
+  border-color: #fe2c55;
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(254, 44, 85, 0.4);
+}
+.tiktokdm-idm-btn:hover svg { color: #fff; }
+
+.tiktokdm-idm-btn.loading {
+  background: #222;
+  pointer-events: none;
+}
+.tiktokdm-idm-btn.loading svg { animation: tdm-rot 1s linear infinite; }
+
+@keyframes tdm-rot {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

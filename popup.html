@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tikDM</title>
+  <style>
+    :root {
+      --bg-dark: #0f0f12;
+      --bg-card: #18181b;
+      --text-main: #ffffff;
+      --text-dim: #a1a1aa;
+      --accent-pink: #fe2c55;
+      --accent-cyan: #25f4ee;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 350px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      padding: 24px 20px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(254, 44, 85, 0.25);
+    }
+
+    .brand-icon svg { width: 26px; height: 26px; fill: white; }
+
+    .brand-name {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .brand-name span { color: var(--accent-pink); }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 16px 20px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+
+    /* Sections */
+    .section {
+      padding: 0 20px 20px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .feature-list, .step-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-item {
+      font-size: 13px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .feature-item:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-item svg {
+      width: 16px; 
+      height: 16px; 
+      fill: var(--accent-pink);
+      flex-shrink: 0;
+    }
+
+    .step-item {
+      font-size: 13px;
+      color: var(--text-dim);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .step-num {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: -1px;
+      box-shadow: 0 2px 8px rgba(254, 44, 85, 0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-heart {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .dev-info {
+      font-size: 11px;
+      color: var(--text-dim);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .dev-link {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .dev-link:hover { opacity: 0.9; }
+
+    .email-link {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+      font-size: 10px;
+    }
+    .email-link:hover { color: var(--accent-cyan); text-decoration: underline; }
+
+    .version {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 2px 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24"><path d="M12.5 7.5v6.2c0 2.4-1.9 4.3-4.3 4.3S3.9 16.1 3.9 13.7s1.9-4.3 4.3-4.3c.3 0 .7 0 1 .1V5.7c-3.2-.2-5.9 2.3-6.1 5.5-.2 3.4 2.4 6.2 5.8 6.4 3.4.2 6.2-2.4 6.4-5.8V2h3.5c1.1 0 2.1.4 2.9 1.2l.1.1v3.5h-3.5c-1.8 0-3.3.7-4.4 1.8-.8-1.1-1.4-1.1-1.4-1.1z"/></svg>
+      </div>
+      <div class="brand-name">tik<span>DM</span></div>
+    </div>
+    <div class="subtitle">Download videos without watermark</div>
+  </header>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="download-count">0</div>
+      <div class="stat-label">Downloads</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color: var(--accent-pink)">HD</div>
+      <div class="stat-label">Quality</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Features</div>
+    <ul class="feature-list">
+      <li class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        No watermark on downloaded videos
+      </li>
+      <li class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        HD quality when available
+      </li>
+      <li class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        One-click download button
+      </li>
+      <li class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Works on profile & video pages
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">How to use</div>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div>Browse TikTok as usual</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div>Hover over any video to see the download button</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div>Click the pink button to download</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-heart">Made with ❤️ for TikTok enthusiasts</div>
+    <div class="dev-info">
+      <div>Developed by <a href="https://xvanced.co.uk" target="_blank" class="dev-link">Xvanced Developers</a></div>
+      <a href="mailto:info@xvanced.co.uk" class="email-link">info@xvanced.co.uk for business inquiries</a>
+    </div>
+    <div class="version">v2.1</div>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
